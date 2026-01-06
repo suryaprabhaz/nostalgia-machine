@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>₹2 Smile Machine | Digital Nostalgia</title>
+    <meta name="description" content="A digital smile machine. Insert ₹2, get a memory.">
+
+    <!-- External Dependencies (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Local Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="noise"></div>
+
+    <!-- Loading -->
+    <div id="loading-overlay">
+        <p style="font-family: 'Special Elite'; margin-bottom: 1rem;">Warming up the gears...</p>
+        <noscript>
+            <p>JavaScript is required for this machine.</p>
+        </noscript>
+    </div>
+
+    <!-- Fallback -->
+    <div id="fallback-ui">
+        <div class="content-card">
+            <h1>Smile Machine</h1>
+            <p>Your device can't run the 3D machine,<br>but it can still print a smile.</p>
+            <button class="btn" onclick="UI.showResultFallback()">PRINT TICKET</button>
+        </div>
+    </div>
+
+    <!-- Payment QR Overlay -->
+    <div id="qr-overlay">
+        <div class="qr-card">
+            <h2 style="font-family:'Special Elite'; color:var(--paper); margin-bottom: 0.5rem;">Secure UPI Payment</h2>
+            <div style="font-size:0.9rem; opacity:0.7;">Scan to pay ₹2.00</div>
+
+            <img id="upi-qr" class="qr-image" src="" alt="Payment QR">
+
+            <div
+                style="margin-bottom:1.5rem; font-size:0.8rem; font-family:'Inter'; opacity:0.5; letter-spacing: 0.5px;">
+                MERCHANT: rizzzuu@ybl
+            </div>
+
+            <!-- UTR Input -->
+            <div style="margin-bottom: 1.2rem;">
+                <input type="text" id="utr-input" placeholder="Enter 12-digit UPI / UTR No." maxlength="12"
+                    style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); 
+                           background: rgba(255,255,255,0.05); color: white; text-align: center; font-family: 'Inter'; font-size: 1rem; outline: none; transition: border 0.3s;">
+                <div id="utr-error" style="color: #ff5555; font-size: 0.8rem; margin-top: 8px; display: none;">Invalid
+                    UTR. Must be 12 digits.</div>
+            </div>
+
+            <button id="verify-btn" class="btn" style="width:100%; font-size:1.1rem; padding:15px;"
+                onclick="Payment.verify()">
+                VERIFY PAYMENT
+            </button>
+            <div id="verifying-text"
+                style="display:none; margin-top:1rem; color:var(--accent); font-size:0.95rem; font-weight: 600;">
+                <div class="verification-spinner"></div> Checking with Bank...
+            </div>
+
+            <p style="margin-top:1.5rem; font-size:0.8rem; cursor:pointer; opacity:0.5; transition: opacity 0.3s;"
+                onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5" onclick="Payment.cancel()">Cancel
+                Transaction</p>
+        </div>
+    </div>
+
+    <button id="mute-toggle" aria-label="Toggle Sound">🔊</button>
+
+    <!-- 3D Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Home UI -->
+    <div class="ui-layer" id="home-ui">
+        <div class="content-card">
+            <h1>₹2 Smile Machine</h1>
+            <p class="tagline">“Somewhere between heavy school bags and evening sunsets, we forgot how easy it was to
+                smile.”</p>
+            <button class="btn" onclick="App.start()">START MACHINE</button>
+        </div>
+    </div>
+
+    <!-- Payment Trigger Logic -->
+    <div class="ui-layer" id="payment-trigger">
+        <div class="content-card">
+            <h2 style="font-family:'Special Elite'; margin-bottom:1rem;">Ready to begin?</h2>
+            <p style="margin-bottom:2rem; opacity:0.8;">The machine requires a ₹2 coin to dispense nostalgia.</p>
+            <button class="btn" style="background:var(--rust)" onclick="Payment.initiate()">INSERT ₹2 COIN</button>
+            <p style="margin-top:1rem; font-size:0.8rem; cursor:pointer; text-decoration: underline;"
+                onclick="App.reset()">Cancel</p>
+        </div>
+    </div>
+
+    <!-- Status Text -->
+    <div class="machine-screen-text" id="status-display">INSERT COIN</div>
+
+    <!-- Result View -->
+    <div id="result-view">
+        <div id="ticket-canvas-container">
+            <img id="generated-ticket" src="" alt="Your Smile Ticket">
+        </div>
+        <div class="controls">
+            <button class="btn" onclick="Ticket.download()">DOWNLOAD SMILE</button>
+            <button class="btn btn-secondary" onclick="App.reset()">PRINT ANOTHER</button>
+        </div>
+        <div style="margin-top:30px; font-size:0.8rem; opacity:0.5; max-width:300px; text-align:center;">
+            ₹2 Smile Project • No data collected • Experimental Digital Art
+        </div>
+    </div>
+
+    <!-- Hidden Canvas -->
+    <canvas id="hidden-ticket-canvas" width="800" height="1100" style="display:none;"></canvas>
+
+    <!-- Project Logic (Load Order Matters) -->
+    <script src="js/config.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/ticket.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
