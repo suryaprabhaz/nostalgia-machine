@@ -1,48 +1,40 @@
-# ₹2 Smile Machine — A 3D Interactive Nostalgia Experience
+# ₹2 Smile Machine
 
-A creative, emotion-driven web experience inspired by old coin-operated machines at Indian railway stations.
+A 3D interactive nostalgia experience inspired by the old coin-operated machines found around Indian railway stations.
 
-## Features
-• **Interactive 3D Machine**: High-fidelity steampunk machine built with Three.js.
-• **Emotion-Focused UX**: Designed to evoke nostalgia and warmth.
-• **UPI Payment Integration**: Professional QR code flow with UTR verification (Client-side simulation).
-• **Canvas-Based Ticket Generation**: Dynamically generated keepsake tickets with unique quotes.
-• **Mobile Optimizations**: Performance guards for smooth playback on all devices.
-• **Privacy First**: No login, no tracking, no data collection.
+## Experience
 
-## Tech Stack
-• HTML5 / CSS3
-• JavaScript (ES6+ Modules)
-• Three.js (3D Rendering)
-• GSAP (Animations)
-• Canvas API (Ticket Generation)
+- Three.js procedural machine
+- GSAP-driven interactions
+- Canvas-generated keepsake ticket
+- Procedural audio
+- Mobile performance safeguards
+- Reduced-motion support
+- No login or analytics requirement
 
-## How to Run
-1. Clone this repository.
-2. Open `index.html` in any modern web browser.
-3. No build tools (Webpack/Vite) required — it runs natively.
+## Payment mode
 
-## Project Structure
-```
-nostalgia-smile-machine/
-│
-├── index.html       # Entry point
-├── css/
-│   └── styles.css   # Single CSS file for all styles
-│
-└── js/
-    ├── config.js    # Configuration & Constants
-    ├── state.js     # Global state management
-    ├── audio.js     # Audio context & sound generation
-    ├── engine.js    # Three.js scene & animation loop
-    ├── ticket.js    # Canvas ticket generation logic
-    ├── payment.js   # UPI QR & UTR verification logic
-    ├── ui.js        # DOM manipulation & screen transitions
-    └── app.js       # Main application bootstrap
+The UPI screen is a **demo simulation**. Entering a syntactically valid UTR does not contact a bank and does not prove that a payment happened.
+
+This distinction is deliberate: the project is an interactive-art experience, not a payment gateway.
+
+## Stack
+
+HTML5 · CSS3 · JavaScript ES modules · Three.js · GSAP · Canvas API
+
+## Run locally
+
+```bash
+git clone https://github.com/suryaprabhaz/nostalgia-machine.git
+cd nostalgia-machine
 ```
 
-> [!NOTE]
-> **Payment Logic**: The payment system uses a real UPI ID (`rizzzuu@ybl`) but the verification is currently a client-side simulation for demonstration purposes. This is an experimental creative engineering project.
+Open `index.html` through a static server for the best browser-module behavior.
+
+## Performance and accessibility
+
+The experience accounts for mobile devices and `prefers-reduced-motion`. Future production iterations should continue to measure frame rate, memory usage and asset-loading cost.
 
 ## License
-Experimental Digital Art. Built for learning and demonstration.
+
+Experimental digital art — built for learning and demonstration.
