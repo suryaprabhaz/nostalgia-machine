@@ -1,6 +1,6 @@
 /**
  * ------------------------------------------------------------------
- * PAYMENT LOGIC (UPI Professional)
+ * PAYMENT LOGIC (DEMO SIMULATION)
  * ------------------------------------------------------------------
  */
 const Payment = (() => {
@@ -51,9 +51,10 @@ const Payment = (() => {
         const text = document.getElementById('verifying-text');
 
         btn.style.display = 'none';
+        text.textContent = 'Demo: simulating payment…';
         text.style.display = 'block';
 
-        // Professional Verification Delay (3s)
+        // Simulate a successful verification delay (3s); no bank verification occurs.
         setTimeout(() => {
             onSuccess();
         }, 3000);
