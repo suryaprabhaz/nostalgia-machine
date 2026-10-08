@@ -41,7 +41,7 @@
     <!-- Payment QR Overlay -->
     <div id="qr-overlay">
         <div class="qr-card">
-            <h2 style="font-family:'Special Elite'; color:var(--paper); margin-bottom: 0.5rem;">Secure UPI Payment</h2>
+            <h2 style="font-family:'Special Elite'; color:var(--paper); margin-bottom: 0.5rem;">UPI Demo — Payment Simulation</h2>
             <div style="font-size:0.9rem; opacity:0.7;">Scan to pay ₹2.00</div>
 
             <img id="upi-qr" class="qr-image" src="" alt="Payment QR">
@@ -62,11 +62,11 @@
 
             <button id="verify-btn" class="btn" style="width:100%; font-size:1.1rem; padding:15px;"
                 onclick="Payment.verify()">
-                VERIFY PAYMENT
+                SIMULATE PAYMENT
             </button>
             <div id="verifying-text"
                 style="display:none; margin-top:1rem; color:var(--accent); font-size:0.95rem; font-weight: 600;">
-                <div class="verification-spinner"></div> Checking with Bank...
+                <div class="verification-spinner"></div> Simulating payment...
             </div>
 
             <p style="margin-top:1.5rem; font-size:0.8rem; cursor:pointer; opacity:0.5; transition: opacity 0.3s;"
